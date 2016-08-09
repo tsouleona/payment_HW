@@ -3,30 +3,31 @@
     {
         public function checkId ($id)
         {
-            $array = array($id);
-            $cmd = "SELECT * FROM `User` WHERE `User_ID`=?";
-            $row = $this->connectGetdata($cmd, $array);
-            $this->dbgo = null;
-            if ($row!= null) {
+            $items = [$id];
+            $order = "SELECT * FROM `User` WHERE `id`=?";
+            $row = $this->connectGetdata($order, $items);
+            $this->pdo_connect = null;
+            if ($row) {
                 return $row;
             } else {
                 return false;
             }
         }
-        
-        public function selectTotal ($id)
+
+        public function selectBalance ($id)
         {
-            $array = array($id);
-            $cmd = "SELECT `User_Total` FROM `User` WHERE `User_ID`=? FOR UPDATE";
-            $row = $this->connectGetdata($cmd, $array);
+            $items = [$id];
+            $order = "SELECT `User_Total` FROM `User` WHERE `User_ID`=? FOR UPDATE";
+            $row = $this->connectGetdata($order, $items);
+
             return $row[0]['User_Total'];
         }
-        
-        public function updateUser ($id, $total)
+
+        public function updateUser ($id, $balance)
         {
-            $array = array($total, $id);
-            $cmd ="UPDATE `User` SET `User_Total`=? WHERE `User_ID`=?";
-            $this->connectMysql($cmd, $array);
+            $items = [$balance, $id];
+            $order ="UPDATE `User` SET `User_Total`=? WHERE `User_ID`=?";
+            $this->connectMysql($order, $items);
         }
-        
+
     }

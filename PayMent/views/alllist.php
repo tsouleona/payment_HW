@@ -1,7 +1,7 @@
 <html lang="en">
 <?php 
-    $CONNECT = new connect_db();
-    $ROOT = $CONNECT->db();
+    $connect = new connect_db();
+    $root = $connect->db();
 ?>
 <head>
 
@@ -11,23 +11,23 @@
     <title>PayMent</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<?php echo $ROOT;?>views/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $root;?>views/css/bootstrap.css" rel="stylesheet">
     
     <!-- Jquery-->
-    <script src="<?php echo $ROOT;?>views/jquery/jquery.js"></script>
+    <script src="<?php echo $root;?>views/jquery/jquery.js"></script>
     
 </head>
 <body>
     <?php 
-        $ID = $DATA[0];
+        $id = $data[0];
     ?>
-    <input style="visibility:hidden" value="<?php echo $ID;?>" id="Userid" />
+    <input style="visibility:hidden" value="<?php echo $id;?>" id="Userid" />
     <br><br><br>
     <div id="alllist"><h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3></div>         
     <script>
     var poll = function(){
         $.ajax({
-            url:'<?php echo $ROOT;?>AllList/allList',
+            url:'<?php echo $root;?>AllList/allList',
             type:'POST',
             data:
             {
@@ -43,6 +43,6 @@
     setInterval(poll, 3000);
     </script> 
     <!-- Bootstrap Core js -->
-    <script src="<?php echo $ROOT;?>views/js/bootstrap.js"></script>
+    <script src="<?php echo $root;?>views/js/bootstrap.js"></script>
 </body>
 </html>

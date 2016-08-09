@@ -1,25 +1,25 @@
 <?php 
-    $ID = $DATA[0];
-    $ROW = $DATA[1];
-    $TOTAL = $DATA[2];
+    $id = $data[0];
+    $row = $data[1];
+    $total = $data[2];
 ?>
 <?php 
-    $CONNECT = new connect_db();
-    $ROOT = $CONNECT->db();
+    $connect = new connect_db();
+    $root = $connect->db();
 ?>
 <div class="row" align="center">
     <div class="container">
         <div class="row" style="width:600;background:#ffaab8;border:2px #ffaab8 solid;border-radius:10px">
-            <h4 style="color:#FFF"><strong><?php echo $ID;?>歡迎光臨!!</strong></h4>
-            <h4 style="color:#FFF"><strong>您的餘額為 $<?php echo $TOTAL;?></strong></h4>
+            <h4 style="color:#FFF"><strong><?php echo $id;?>歡迎光臨!!</strong></h4>
+            <h4 style="color:#FFF"><strong>您的餘額為 $<?php echo $total;?></strong></h4>
             <a style="color:#FFF" 
-            href="<?php echo $ROOT?>Index/check">
+            href="<?php echo $root?>Index/check">
             <button  class="btn btn-primary btn-lg" >回首頁</button></a>
             <a style="color:#FFF" 
-            href="<?php echo $ROOT?>Outcome/outcomeView?ID=<?php echo $ID;?>">
+            href="<?php echo $root?>Outcome/outcomeView?ID=<?php echo $id;?>">
             <button  class="btn btn-primary btn-lg" >出款</button></a>
             <a style="color:#FFF" 
-            href="<?php echo $ROOT?>Income/incomeView?ID=<?php echo $ID;?>">
+            href="<?php echo $root?>Income/incomeView?ID=<?php echo $id;?>">
             <button  class="btn btn-primary btn-lg" >入款</button></a>
         </div>
     </div>
@@ -41,21 +41,21 @@
                        <h4><strong><font color="#38c0df"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;金額</font></strong></h4>
                     </td>
                     <?php 
-                        $X = count($ROW);
-                        for($I=0;$I<$X;$I++){
+                        $x = count($row);
+                        for($i=0;$i<$x;$i++){
                     ?>
                     <tr>
                         <td align="center">
-                           <h4><?php echo $ROW[$I]['date'];?></h4>
+                           <h4><?php echo $row[$i]['date'];?></h4>
                         </td>
                         <td align="center">
-                            <h4><?php echo $ROW[$I]['Item'];?></h4>
+                            <h4><?php echo $row[$i]['Item'];?></h4>
                         </td>
                         <td align="center">
-                           <h4><?php echo $ROW[$I]['data'];?></h4>
+                           <h4><?php echo $row[$i]['data'];?></h4>
                         </td>
                         <td align="center">
-                            <h4><?php echo $ROW[$I]['Money'];?></h4>
+                            <h4><?php echo $row[$i]['Money'];?></h4>
                         </td>
                         
                     </tr>

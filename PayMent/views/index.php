@@ -1,7 +1,7 @@
 <html lang="en">
 <?php 
-    $CONNECT = new connect_db();
-    $ROOT = $CONNECT->db();
+    $connect = new connect_db();
+    $root = $connect->db();
 ?>
 <head>
 
@@ -11,10 +11,10 @@
     <title>PayMent</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<?php echo $ROOT;?>views/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $root;?>views/css/bootstrap.css" rel="stylesheet">
     
     <!-- Jquery-->
-    <script src="<?php echo $ROOT;?>views/jquery/jquery.js"></script>
+    <script src="<?php echo $root;?>views/jquery/jquery.js"></script>
     
 </head>
 <body>
@@ -36,7 +36,7 @@
         $("#ok").on("click",function(){
             $("#options").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
             $.ajax({
-                url:'<?php echo $ROOT;?>Index/options',
+                url:'<?php echo $root;?>Index/options',
                 type:'POST',
                 data:{ID:$("#Userid").val()},
                 datatype:'html',
@@ -51,6 +51,6 @@
     
     
     <!-- Bootstrap Core js -->
-    <script src="<?php echo $ROOT;?>views/js/bootstrap.js"></script>
+    <script src="<?php echo $root;?>views/js/bootstrap.js"></script>
 </body>
 </html>

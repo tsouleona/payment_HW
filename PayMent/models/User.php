@@ -1,32 +1,32 @@
 <?php
     class User extends Connect
     {
-        public function checkId ($ID)
+        public function checkId ($id)
         {
-            $ARRAY = array($ID);
-            $CMD = "SELECT * FROM `User` WHERE `User_ID`=?";
-            $ROW = $this->connectGetdata($CMD, $ARRAY);
-            $this->DBGO = null;
-            if ($ROW!= null) {
-                return $ROW;
+            $array = array($id);
+            $cmd = "SELECT * FROM `User` WHERE `User_ID`=?";
+            $row = $this->connectGetdata($cmd, $array);
+            $this->dbgo = null;
+            if ($row!= null) {
+                return $row;
             } else {
                 return false;
             }
         }
         
-        public function selectTotal ($ID)
+        public function selectTotal ($id)
         {
-            $ARRAY = array($ID);
-            $CMD = "SELECT `User_Total` FROM `User` WHERE `User_ID`=? FOR UPDATE";
-            $ROW = $this->connectGetdata($CMD, $ARRAY);
-            return $ROW[0]['User_Total'];
+            $array = array($id);
+            $cmd = "SELECT `User_Total` FROM `User` WHERE `User_ID`=? FOR UPDATE";
+            $row = $this->connectGetdata($cmd, $array);
+            return $row[0]['User_Total'];
         }
         
-        public function updateUser ($ID, $TOTAL)
+        public function updateUser ($id, $total)
         {
-            $ARRAY = array($TOTAL, $ID);
-            $CMD ="UPDATE `User` SET `User_Total`=? WHERE `User_ID`=?";
-            $this->connectMysql($CMD, $ARRAY);
+            $array = array($total, $id);
+            $cmd ="UPDATE `User` SET `User_Total`=? WHERE `User_ID`=?";
+            $this->connectMysql($cmd, $array);
         }
         
     }

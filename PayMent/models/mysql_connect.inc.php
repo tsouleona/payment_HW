@@ -1,22 +1,22 @@
 <?php
 
 class Connect{
-        protected $RESULT;
-        public $DBGO;
+        protected $result;
+        public $dbgo;
         function connectSql(){
                //資料庫設定
                 //資料庫位置
-                $DB_SERVER = "localhost";
+                $db_server = "localhost";
                 //資料庫名稱
-                $DB_NAME = "PayMent";
+                $db_name = "PayMent";
                 //資料庫管理者帳號
-                $DB_USER = "tsouleona";
+                $db_user = "tsouleona";
                 //資料庫管理者密碼
-                $DB_PASSWD = "830606";
+                $db_passwd = "830606";
                 //對資料庫連線
-                $DB_CONNECT = "mysql:host=".$DB_SERVER.";dbname=".$DB_NAME;
-                $this->DBGO = new PDO($DB_CONNECT, $DB_USER, $DB_PASSWD);
-                $this->DBGO->exec("SET NAMES utf8");
+                $db_connect = "mysql:host=".$db_server.";dbname=".$db_name;
+                $this->dbgo = new PDO($db_connect, $db_user, $db_passwd);
+                $this->dbgo->exec("SET NAMES utf8");
                 
                 //法二
                 // $this->Link = mysql_connect($db_server, $db_user, $db_passwd) or die("無法對資料庫連線");
@@ -27,15 +27,15 @@ class Connect{
                 
                 
         }
-        function connectMysql($COM,$ARRAY){
+        function connectMysql($com,$array){
                 $this->connectSql();
-                $this->RESULT = $this->DBGO->prepare($COM);
-                $this->RESULT->execute($ARRAY);
+                $this->result = $this->dbgo->prepare($com);
+                $this->result->execute($array);
         }
-        function connectGetdata($COM,$ARRAY){
+        function connectGetdata($com,$array){
                 $this->connectSql();
-                $this->connectMysql($COM,$ARRAY);
-                $ROW = $this->RESULT->fetchAll(PDO::FETCH_ASSOC);
+                $this->connectMysql($com,$array);
+                $row = $this->result->fetchAll(PDO::FETCH_ASSOC);
                 
                 //法二
                 //$g = 0 ;
@@ -48,7 +48,7 @@ class Connect{
                 //     $g = $g + 1;
                 // }
                 
-                return $ROW;
+                return $row;
                 
             }
         

@@ -1,19 +1,20 @@
 <?php
     class Listall extends Connect
     {
-        public function insertList ($LIST, $DATE, $ITEM)
+        public function insertList ($list, $date, $item)
         {
-            $ARRAY = array($LIST['ID'], $ITEM, $LIST['outdata'], $LIST['outmoney'], $DATE);
-            $CMD = "INSERT INTO `List`(`User_ID`, `Item`, `data`, `Money`, `date`)
+            $array = array($list['ID'], $item, $list['outdata'], $list['outmoney'], $date);
+            $cmd = "INSERT INTO `List`(`User_ID`, `Item`, `data`, `Money`, `date`)
             VALUES(?, ?, ?, ?, ?)";
-            $this->connectMysql($CMD,$ARRAY);
+            $this->connectMysql($cmd,$array);
         }
-        public function selectList($ID)
+        public function selectList($id)
         {
-            $ARRAY = array($ID);
-            $CMD = "SELECT * FROM `List` WHERE `User_ID`=?";
-            $ROW = $this->connectGetdata($CMD, $ARRAY);
-            return $ROW;
+            $array = array($id);
+            $cmd = "SELECT * FROM `List` WHERE `User_ID`=?";
+            $row = $this->connectGetdata($cmd, $array);
+            $this->dbgo = null;
+            return $row;
         }
         
     }

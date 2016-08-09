@@ -1,20 +1,20 @@
 <?php
 class Controller{
-    protected $RESULT;
+    protected $result;
         
     public function __construct(){
-        $CON = new connect_db();
-        $this->RESULT = $CON->db();
+        $con = new connect_db();
+        $this->result = $con->db();
     }
-    public function model($MODEL) {
+    public function model($model) {
         require_once "../PayMent/models/mysql_connect.inc.php";
-        require_once "../PayMent/models/$MODEL.php";
+        require_once "../PayMent/models/$model.php";
         
-        return new $MODEL ();
+        return new $model ();
     }
     
-    public function view($VIEW, $DATA = Array()) {
-        require_once "views/$VIEW.php";
+    public function view($view, $data = Array()) {
+        require_once "views/$view.php";
         
     }
 

@@ -13,7 +13,7 @@
             $user = $this->model("User");
             $row = $user->checkId($id);
             
-            if ($ROW != null) {
+            if ($row != null) {
                 
                 $this->view("chose",Array($row));
             }

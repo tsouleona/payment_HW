@@ -19,7 +19,6 @@ date_default_timezone_set("Asia/Taipei");
                     $user = $this->model("User");
                     $list = $this->model("Listall");
                     $total = $user->selectTotal($_POST['ID']);
-                    sleep(10);
                     if ($MONEY < 0){
                         throw new Exception("您的入款金額不能小於0");
                         exit;

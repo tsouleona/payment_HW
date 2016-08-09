@@ -19,14 +19,13 @@ date_default_timezone_set("Asia/Taipei");
                     $user = $this->model("User");
                     $list = $this->model("Listall");
                     $total = $user->selectTotal($_POST['ID']);
-                    sleep(10);
                     if ($money > $total){
                         throw new Exception("您的出款金額大於餘額");
                         exit;
                     }
                     $item = '出款';
                     $total = $total - $money;
-                    $LIST->insertList($_POST, $date, $item);
+                    $list->insertList($_POST, $date, $item);
                     $user->updateUser($_POST['ID'], $total);
                     $db->dbgo->commit();
                     $db->dbgo = null;

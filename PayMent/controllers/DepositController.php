@@ -25,10 +25,9 @@
                     throw new Exception("您的入款金額不能小於0");
                 }
 
-                $action = '入款';
                 $balance = $balance + $amount;
-                $entry->insertEntry($_POST, $action, $balance);
-                $user->updateUser($_POST['user_id'], $balance);
+                $user->updateUser($_POST['user_id'], $amount);
+                $entry->insertEntry($_POST, $amount, $action, $balance);
 
                 $db->pdo_connect->commit();
                 $db->pdo_connect = null;

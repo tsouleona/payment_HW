@@ -3,8 +3,8 @@
         protected $result;
 
         public function __construct(){
-            $con = new connect_db();
-            $this->result = $con->db();
+            $connect = new Config();
+            $this->result = $connect->root();
         }
         public function model($model) {
             require_once "../PayMent/models/mysql_connect.inc.php";

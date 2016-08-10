@@ -26,7 +26,7 @@
         public function updateUser ($id, $balance)
         {
             $items = [$balance,$id];
-            $order ="UPDATE `user` SET `balance`=? WHERE `id` = ?";
+            $order ="UPDATE `user` SET `balance` = `balance` + ? WHERE `id` = ?";
             $this->connectMysql($order, $items);
         }
 

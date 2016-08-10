@@ -28,16 +28,13 @@
                    <h4><strong><font color="#38c0df"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span>&nbsp;時間</font></strong></h4>
                 </td>
                 <td align="center">
-                   <h4><strong><font color="#38c0df"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span>&nbsp;項目</font></strong></h4>
-                </td>
-                <td align="center">
-                   <h4><strong><font color="#38c0df"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;交易名目</font></strong></h4>
-                </td>
-                <td align="center">
                    <h4><strong><font color="#38c0df"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;本次交易金額</font></strong></h4>
                 </td>
                 <td align="center">
                    <h4><strong><font color="#38c0df"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;本次交易餘額</font></strong></h4>
+                </td>
+                <td align="center">
+                   <h4><strong><font color="#38c0df"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;備註</font></strong></h4>
                 </td>
             </thead>
                 <?php
@@ -50,18 +47,14 @@
                            <h4><?php echo $row[$i]['date'];?></h4>
                         </td>
                         <td align="center">
-                            <h4><?php echo $row[$i]['action'];?></h4>
-                        </td>
-                        <td align="center">
-                           <h4><?php echo $row[$i]['memo'];?></h4>
-                        </td>
-                        <td align="center">
                             <h4><?php echo $row[$i]['amount'];?></h4>
                         </td>
                         <td align="center">
                             <h4><?php echo $row[$i]['balance'];?></h4>
                         </td>
-
+                        <td align="center">
+                           <h4><?php echo $row[$i]['memo'];?></h4>
+                        </td>
                     </tr>
                 <?php }?>
         </table>

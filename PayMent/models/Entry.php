@@ -3,12 +3,12 @@
 
     class Entry extends Connect
     {
-        public function insertEntry ($list, $action, $balance)
+        public function insertEntry ($list, $amount, $action, $balance)
         {
             $date = date("Y-m-d H:i:s");
-            $items = [$list['user_id'], $action, $list['memo'], $list['amount'], $balance, $date];
-            $order = "INSERT INTO `entry`(`user_id`, `action`, `memo`, `amount`, `balance`, `date`)
-            VALUES(?, ?, ?, ?, ?, ?)";
+            $items = [$list['user_id'], $list['memo'], $amount, $balance, $date];
+            $order = "INSERT INTO `entry`(`user_id`, `memo`, `amount`, `balance`, `date`)
+            VALUES(?, ?, ?, ?, ?)";
             $this->connectMysql($order,$items);
         }
 

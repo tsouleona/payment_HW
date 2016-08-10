@@ -11,7 +11,7 @@
 
         public function expenseMoney ()
         {
-            $amount = $_POST['amount'];
+            $amount = -$_POST['amount'];
             try {
                     $db = new Connect();
                     $db->connectSql();
@@ -25,10 +25,9 @@
                         throw new Exception("您的出款金額大於餘額");
                     }
 
-                    $action = '出款';
-                    $balance = $balance - $amount;
-                    $user->updateUser($_POST['user_id'], $balance);
-                    $entry->insertEntry($_POST, $action, $balance);
+                    $balance = $balance + $amount;
+                    $user->updateUser($_POST['user_id'], $amount);
+                    $entry->insertEntry($_POST, $amount, $action, $balance);
 
                     $db->pdo_connect->commit();
                     $db->pdo_connect = null;

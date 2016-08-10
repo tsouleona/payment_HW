@@ -11,7 +11,7 @@
 
         public function expenseMoney ()
         {
-            $amount = -$_POST['amount'];
+            $amount = $_POST['amount'];
             try {
                     $db = new Connect();
                     $db->connectSql();
@@ -24,10 +24,11 @@
                     if ($amount > $balance) {
                         throw new Exception("您的出款金額大於餘額");
                     }
+
                     if ($amount < 0) {
                         throw new Exception("您的出款金額不能小於0");
                     }
-
+                    $amount = -$amount;
                     $balance = $balance + $amount;
                     $user->updateUser($_POST['user_id'], $amount);
                     $entry->insertEntry($_POST, $amount, $action, $balance);

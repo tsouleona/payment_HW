@@ -34,7 +34,9 @@
                     <h4 style="color:#FFF"><strong>備註</strong></h4>
                     <input type="text" class="form-control" id="deposit_memo" />
                 </div>
-                <a style="color:#FFF" href="<?php echo $root;?>Index/indexView" ><button id="ok" class="btn btn-primary btn-lg">回首頁</button></a>
+                <a style="color:#FFF" href="<?php echo $root;?>Index/indexView" >
+                    <button id="ok" class="btn btn-primary btn-lg">回首頁</button>
+                </a>
                 <button id="depositok" class="btn btn-primary btn-lg">確認</button>
             </div>
         </div>
@@ -42,10 +44,9 @@
     <hr>
     <div id="depositop"></div>
     <script>
-        $("#depositok").on("click",function(){
+        $("#depositok").on("click", function () {
 
-            if ($("#deposit_amount").val()=="")
-            {
+            if ($("#deposit_amount").val() == "") {
                 $("#depositop").html('<h3 style="color:#ff5d79"><strong>尚未輸入完整</strong></h3>');
             }else {
                 $("#depositop").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
@@ -59,19 +60,12 @@
                     },
                     datatype:'html',
                     success:function(data){
-
                         $("#depositop").html(data);
                     }
                 })
             }
-
-
-
         });
-
     </script>
-
-
     <!-- Bootstrap Core js -->
     <script src="<?php echo $root;?>views/js/bootstrap.js"></script>
 </body>

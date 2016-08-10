@@ -1,5 +1,6 @@
 <?php
     date_default_timezone_set("Asia/Taipei");
+
     class Entry extends Connect
     {
         public function insertEntry ($list, $action, $balance)
@@ -11,10 +12,10 @@
             $this->connectMysql($order,$items);
         }
 
-        public function selectEntry($user_id)
+        public function selectEntry ($user_id)
         {
             $items = [$user_id];
-            $order = "SELECT * FROM `entry` WHERE `user_id`=?";
+            $order = "SELECT * FROM `entry` WHERE `user_id` = ?";
             $row = $this->connectGetdata($order, $items);
             $this->pdo_connect = null;
 

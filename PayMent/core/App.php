@@ -5,7 +5,7 @@
         public function __construct() {
             $url = $this->parseUrl();
 
-            $controllerName = "{$url[0]}Leona";
+            $controllerName = "{$url[0]}Controller";
             if (!file_exists("controllers/$controllerName.php"))
                 $controllerName="IndexLeona";
             require_once "controllers/$controllerName.php";

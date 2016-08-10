@@ -33,23 +33,20 @@
     <hr>
     <div id="index_view"></div>
     <script>
-        $("#ok").on("click",function(){
-            $("#index_view").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
-            $.ajax({
-                url:'<?php echo $root;?>Index/checkId',
-                type:'POST',
-                data:{user_id:$("#user_id").val()},
-                datatype:'html',
-                success:function(data){
-
-                    $("#index_view").html(data);
-                }
-            })
-        });
-
+    $("#ok").on("click",function ()
+    {
+        $("#index_view").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
+        $.ajax({
+            url:'<?php echo $root;?>Index/checkId',
+            type:'POST',
+            data:{user_id:$("#user_id").val()},
+            datatype:'html',
+            success:function(data){
+                $("#index_view").html(data);
+            }
+        })
+    });
     </script>
-
-
     <!-- Bootstrap Core js -->
     <script src="<?php echo $root;?>views/js/bootstrap.js"></script>
 </body>

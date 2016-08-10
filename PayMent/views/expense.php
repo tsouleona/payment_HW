@@ -43,10 +43,9 @@
     <hr>
     <div id="expenseop"></div>
     <script>
-        $("#expenseok").on("click",function(){
-
-            if ($("#expense_amount").val()=="")
-            {
+        $("#expenseok").on("click",function ()
+        {
+            if ($("#expense_amount").val()=="") {
                 $("#expenseop").html('<h3 style="color:#ff5d79"><strong>尚未輸入完整</strong></h3>');
             }else {
                 $("#expenseop").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
@@ -60,19 +59,12 @@
                     },
                     datatype:'html',
                     success:function(data){
-
                         $("#expenseop").html(data);
                     }
                 })
             }
-
-
-
         });
-
     </script>
-
-
     <!-- Bootstrap Core js -->
     <script src="<?php echo $root;?>views/js/bootstrap.js"></script>
 </body>

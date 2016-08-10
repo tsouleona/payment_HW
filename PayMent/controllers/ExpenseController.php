@@ -1,11 +1,12 @@
 <?php
     require_once "../PayMent/models/mysql_connect.inc.php";
-    class ExpenseLeona extends Controller
+
+    class ExpenseController extends Controller
     {
         public function expenseView ()
         {
             $user_id = $_GET['user_id'];
-            $this->view("expense", Array($user_id));
+            $this->view("expense", [$user_id]);
         }
 
         public function expenseMoney ()
@@ -31,9 +32,10 @@
 
                     $db->pdo_connect->commit();
                     $db->pdo_connect = null;
-                    $this->view("expense_chose", Array($_POST['user_id'], $balance));
+                    $this->view("expense_chose", [$_POST['user_id'], $balance]);
             }
-            catch(Exception $err){
+            catch(Exception $err)
+            {
                 $db->pdo_connect->rollBack();
                 $this->error($err->getMessage());
                 $db->pdo_connect = null;
@@ -42,11 +44,11 @@
 //錯誤訊息
         public function error ($error)
         {
-            $a = '<div class="alert alert-danger alert-dismissible" role="alert">
+            $message = '<div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4><strong>'.$error.'</strong></h4></div>';
 
-            $this->view("point", Array($a));
+            $this->view("point", [$message]);
         }
     }

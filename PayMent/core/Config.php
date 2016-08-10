@@ -1,7 +1,9 @@
 <?php
-    class connect_db{
-        function db(){
+    class Config{
+        function root ()
+        {
             $root = "/payment_HW/PayMent/";
+
             return $root;
         }
     }

@@ -1,7 +1,7 @@
 <html lang="en">
 <?php
-    $connect = new connect_db();
-    $root = $connect->db();
+    $connect = new Config();
+    $root = $connect->root();
 ?>
 <head>
 

@@ -1,7 +1,7 @@
 <?php
     $row = $data[0];
-    $connect = new connect_db();
-    $root = $connect->db();
+    $connect = new Config();
+    $root = $connect->root();
 ?>
 <div class="row" align="center">
     <div class="container">

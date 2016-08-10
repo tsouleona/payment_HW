@@ -1,10 +1,8 @@
 <?php
     $user_id = $data[0];
     $balance = $data[1];
-?>
-<?php
-    $connect = new connect_db();
-    $root = $connect->db();
+    $connect = new Config();
+    $root = $connect->root();
 ?>
 <div class="row" align="center">
     <div class="container">

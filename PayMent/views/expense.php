@@ -43,23 +43,28 @@
     <script>
         $("#expenseok").on("click",function ()
         {
-            if ($("#expense_amount").val()=="") {
-                $("#expenseop").html('<h3 style="color:#ff5d79"><strong>尚未輸入完整</strong></h3>');
-            }else {
-                $("#expenseop").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
-                $.ajax({
-                    url:'<?php echo $root;?>Expense/expenseMoney',
-                    type:'POST',
-                    data:{
-                        user_id:$("#user_id").val(),
-                        amount:$("#expense_amount").val(),
-                        memo:$("#expense_memo").val()
-                    },
-                    datatype:'html',
-                    success:function(data){
-                        $("#expenseop").html(data);
-                    }
-                })
+            if (!isNaN($("#expense_amount").val()))
+            {
+                if ($("#expense_amount").val()=="") {
+                    $("#expenseop").html('<h3 style="color:#ff5d79"><strong>尚未輸入完整</strong></h3>');
+                } else {
+                    $("#expenseop").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
+                    $.ajax({
+                        url:'<?php echo $root;?>Expense/expenseMoney',
+                        type:'POST',
+                        data:{
+                            user_id:$("#user_id").val(),
+                            amount:$("#expense_amount").val(),
+                            memo:$("#expense_memo").val()
+                        },
+                        datatype:'html',
+                        success:function(data){
+                            $("#expenseop").html(data);
+                        }
+                    });
+                }
+            } else {
+                $("#expenseop").html('<h3 style="color:#ff5d79"><strong>出款金額只能輸入數字</strong></h3>');
             }
         });
     </script>

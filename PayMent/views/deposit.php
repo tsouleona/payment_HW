@@ -43,25 +43,30 @@
     <hr>
     <div id="depositop"></div>
     <script>
-        $("#depositok").on("click", function () {
-
-            if ($("#deposit_amount").val() == "") {
-                $("#depositop").html('<h3 style="color:#ff5d79"><strong>尚未輸入完整</strong></h3>');
-            }else {
-                $("#depositop").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
-                $.ajax({
-                    url:'<?php echo $root;?>Deposit/depositMoney',
-                    type:'POST',
-                    data:{
-                        user_id:$("#user_id").val(),
-                        amount:$("#deposit_amount").val(),
-                        memo:$("#deposit_memo").val()
-                    },
-                    datatype:'html',
-                    success:function(data){
-                        $("#depositop").html(data);
-                    }
-                })
+        $("#depositok").on("click", function ()
+        {
+            if (!isNaN($("#expense_amount").val()))
+            {
+                if ($("#deposit_amount").val() == "") {
+                    $("#depositop").html('<h3 style="color:#ff5d79"><strong>尚未輸入完整</strong></h3>');
+                } else {
+                    $("#depositop").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
+                    $.ajax({
+                        url:'<?php echo $root;?>Deposit/depositMoney',
+                        type:'POST',
+                        data:{
+                            user_id:$("#user_id").val(),
+                            amount:$("#deposit_amount").val(),
+                            memo:$("#deposit_memo").val()
+                        },
+                        datatype:'html',
+                        success:function(data){
+                            $("#depositop").html(data);
+                        }
+                    });
+                }
+            } else {
+                $("#depositop").html('<h3 style="color:#ff5d79"><strong>入款金額只能輸入數字</strong></h3>');
             }
         });
     </script>

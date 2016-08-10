@@ -20,7 +20,7 @@
                 $this->error("查無資料");
             }
         }
-//錯誤訊息
+
         public function error ($error) {
             $message = '<div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

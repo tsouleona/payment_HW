@@ -41,7 +41,7 @@
                 $db->pdo_connect = null;
             }
         }
-//錯誤訊息
+
         public function error ($error)
         {
             $message = '<div class="alert alert-danger alert-dismissible" role="alert">

@@ -4,7 +4,6 @@
     $root = $connect->root();
 ?>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -66,6 +65,7 @@
             }
         });
     </script>
+
     <!-- Bootstrap Core js -->
     <script src="<?php echo $root;?>views/js/bootstrap.js"></script>
 </body>

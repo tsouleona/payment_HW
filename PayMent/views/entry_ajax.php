@@ -39,6 +39,7 @@
                 <td align="center">
                    <h4><strong><font color="#38c0df"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;本次交易餘額</font></strong></h4>
                 </td>
+            </thead>
                 <?php
                     $x = count($row);
                     for($i = 0 ; $i < $x ; $i++)
@@ -63,7 +64,6 @@
 
                     </tr>
                 <?php }?>
-
         </table>
     </div>
 </div>

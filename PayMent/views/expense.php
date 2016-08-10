@@ -4,7 +4,6 @@
     $root = $connect->root();
 ?>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -36,7 +35,6 @@
                 </div>
                 <a style="color:#FFF" href="<?php echo $root;?>Index/indexView" ><button id="ok" class="btn btn-primary btn-lg">回首頁</button></a>
                 <button id="expenseok" class="btn btn-primary btn-lg">確認</button>
-
             </div>
         </div>
     </div>
@@ -65,6 +63,7 @@
             }
         });
     </script>
+
     <!-- Bootstrap Core js -->
     <script src="<?php echo $root;?>views/js/bootstrap.js"></script>
 </body>

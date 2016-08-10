@@ -7,7 +7,7 @@
 
             $controllerName = "{$url[0]}Controller";
             if (!file_exists("controllers/$controllerName.php"))
-                $controllerName="IndexLeona";
+                $controllerName="IndexController";
             require_once "controllers/$controllerName.php";
 
             $controller = new $controllerName;

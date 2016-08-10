@@ -1,5 +1,4 @@
 <?php
-
     class Controller{
         protected $result;
 
@@ -16,7 +15,5 @@
 
         public function view($view, $data = Array()) {
             require_once "views/$view.php";
-
         }
-
     }

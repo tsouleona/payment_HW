@@ -1,8 +1,8 @@
 <?php
-
     class App {
 
-        public function __construct() {
+        public function __construct ()
+        {
             $url = $this->parseUrl();
 
             $controllerName = "{$url[0]}Controller";
@@ -21,13 +21,13 @@
             call_user_func_array(Array($controller, $methodName), $params);
         }
 
-        public function parseUrl() {
+        public function parseUrl ()
+        {
             if (isset($_GET["url"])) {
                 $url = rtrim($_GET["url"], "/"); //移除字串右側的空白字符或其他預定義字符。
                 $url = explode("/", $url);
+
                 return $url;
             }
         }
     }
-
-?>

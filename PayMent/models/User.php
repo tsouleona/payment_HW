@@ -4,7 +4,7 @@
         public function checkId ($id)
         {
             $items = [$id];
-            $order = "SELECT * FROM `User` WHERE `id`=?";
+            $order = "SELECT * FROM `user` WHERE `id`=?";
             $row = $this->connectGetdata($order, $items);
             $this->pdo_connect = null;
             if ($row) {
@@ -17,16 +17,16 @@
         public function selectBalance ($id)
         {
             $items = [$id];
-            $order = "SELECT `User_Total` FROM `User` WHERE `User_ID`=? FOR UPDATE";
+            $order = "SELECT `balance` FROM `user` WHERE `id`=? FOR UPDATE";
             $row = $this->connectGetdata($order, $items);
 
-            return $row[0]['User_Total'];
+            return $row[0]['balance'];
         }
 
         public function updateUser ($id, $balance)
         {
-            $items = [$balance, $id];
-            $order ="UPDATE `User` SET `User_Total`=? WHERE `User_ID`=?";
+            $items = [$balance,$id];
+            $order ="UPDATE `user` SET `balance`=? WHERE `id`=?";
             $this->connectMysql($order, $items);
         }
 

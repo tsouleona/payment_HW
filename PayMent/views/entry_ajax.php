@@ -11,10 +11,10 @@
         <div class="row" style="width:600;background:#ffaab8;border:2px #ffaab8 solid;border-radius:10px">
             <h4 style="color:#FFF"><strong><?php echo $user_id;?>歡迎光臨!!</strong></h4>
             <a style="color:#FFF"
-            href="<?php echo $root?>Index/checkId">
+            href="<?php echo $root?>Index/indexView">
             <button  class="btn btn-primary btn-lg" >回首頁</button></a>
             <a style="color:#FFF"
-            href="<?php echo $root?>Expence/expenceView?user_id=<?php echo $user_id;?>">
+            href="<?php echo $root?>Expense/expenseView?user_id=<?php echo $user_id;?>">
             <button  class="btn btn-primary btn-lg" >出款</button></a>
             <a style="color:#FFF"
             href="<?php echo $root?>Deposit/depositView?user_id=<?php echo $user_id;?>">
@@ -36,7 +36,10 @@
                        <h4><strong><font color="#38c0df"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;交易名目</font></strong></h4>
                     </td>
                     <td align="center">
-                       <h4><strong><font color="#38c0df"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;金額</font></strong></h4>
+                       <h4><strong><font color="#38c0df"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;本次交易金額</font></strong></h4>
+                    </td>
+                    <td align="center">
+                       <h4><strong><font color="#38c0df"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;本次交易餘額</font></strong></h4>
                     </td>
                     <?php
                         $x = count($row);
@@ -54,6 +57,9 @@
                         </td>
                         <td align="center">
                             <h4><?php echo $row[$i]['amount'];?></h4>
+                        </td>
+                        <td align="center">
+                            <h4><?php echo $row[$i]['balance'];?></h4>
                         </td>
 
                     </tr>

@@ -26,15 +26,15 @@
         <div class="container">
             <div class="row" style="width:600;background:#ffaab8;border:2px #ffaab8 solid;border-radius:10px">
                 <div class="form-group">
-                    <input style="visibility:hidden" value="<?php echo $id;?>" id="user_id" />
+                    <input style="visibility:hidden" value="<?php echo $user_id;?>" id="user_id" />
 
                     <h4 style="color:#FFF"><strong>請輸入入款金額</strong></h4>
                     <input type="text" class="form-control" id="deposit_amount" />
 
-                    <h4 style="color:#FFF"><strong>入款說明</strong></h4>
+                    <h4 style="color:#FFF"><strong>備註</strong></h4>
                     <input type="text" class="form-control" id="deposit_memo" />
                 </div>
-                <a style="color:#FFF" href="<?php echo $root;?>Index/checkId" ><button id="ok" class="btn btn-primary btn-lg">回首頁</button></a>
+                <a style="color:#FFF" href="<?php echo $root;?>Index/indexView" ><button id="ok" class="btn btn-primary btn-lg">回首頁</button></a>
                 <button id="depositok" class="btn btn-primary btn-lg">確認</button>
             </div>
         </div>
@@ -44,23 +44,23 @@
     <script>
         $("#depositok").on("click",function(){
 
-            if ($("#inmoney").val()=="" || $("#outdata").val()=="")
+            if ($("#deposit_amount").val()=="")
             {
-                $("#incomeop").html('<h3 style="color:#ff5d79"><strong>尚未輸入完整</strong></h3>');
+                $("#depositop").html('<h3 style="color:#ff5d79"><strong>尚未輸入完整</strong></h3>');
             }else {
-                $("#incomeop").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
+                $("#depositop").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
                 $.ajax({
-                    url:'<?php echo $root;?>Desposit/despositMoney',
+                    url:'<?php echo $root;?>Deposit/depositMoney',
                     type:'POST',
                     data:{
-                        user_id:$("#Userid").val(),
+                        user_id:$("#user_id").val(),
                         amount:$("#deposit_amount").val(),
                         memo:$("#deposit_memo").val()
                     },
                     datatype:'html',
                     success:function(data){
 
-                        $("#incomeop").html(data);
+                        $("#depositop").html(data);
                     }
                 })
             }

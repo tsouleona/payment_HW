@@ -1,8 +1,10 @@
 <?php
+    date_default_timezone_set("Asia/Taipei");
     class Entry extends Connect
     {
-        public function insertEntry ($list, $date, $action, $balance)
+        public function insertEntry ($list, $action, $balance)
         {
+            $date = date("Y-m-d H:i:s");
             $items = [$list['user_id'], $action, $list['memo'], $list['amount'], $balance, $date];
             $order = "INSERT INTO `entry`(`user_id`, `action`, `memo`, `amount`, `balance`, `date`)
             VALUES(?, ?, ?, ?, ?, ?)";

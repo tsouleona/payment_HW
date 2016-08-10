@@ -31,11 +31,12 @@
                     <h4 style="color:#FFF"><strong>請輸入出款金額</strong></h4>
                     <input type="text" class="form-control" id="expense_amount" />
 
-                    <h4 style="color:#FFF"><strong>出款說明</strong></h4>
+                    <h4 style="color:#FFF"><strong>備註</strong></h4>
                     <input type="text" class="form-control" id="expense_memo" />
                 </div>
-                <a style="color:#FFF" href="<?php echo $root;?>Index/checkId" ><button id="ok" class="btn btn-primary btn-lg">回首頁</button></a>
+                <a style="color:#FFF" href="<?php echo $root;?>Index/indexView" ><button id="ok" class="btn btn-primary btn-lg">回首頁</button></a>
                 <button id="expenseok" class="btn btn-primary btn-lg">確認</button>
+
             </div>
         </div>
     </div>
@@ -44,7 +45,7 @@
     <script>
         $("#expenseok").on("click",function(){
 
-            if ($("#expense_amount").val()=="" || $("#outdata").val()=="")
+            if ($("#expense_amount").val()=="")
             {
                 $("#expenseop").html('<h3 style="color:#ff5d79"><strong>尚未輸入完整</strong></h3>');
             }else {
@@ -53,7 +54,7 @@
                     url:'<?php echo $root;?>Expense/expenseMoney',
                     type:'POST',
                     data:{
-                        user_id:$("#Userid").val(),
+                        user_id:$("#user_id").val(),
                         amount:$("#expense_amount").val(),
                         memo:$("#expense_memo").val()
                     },

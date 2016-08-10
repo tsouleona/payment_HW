@@ -19,7 +19,7 @@
                     $user = $this->model("User");
                     $entry = $this->model("Entry");
                     $balance = $user->selectBalance($_POST['user_id']);
-                    sleep(10);
+
                     if ($amount > $balance) {
                         throw new Exception("您的出款金額大於餘額");
                     }

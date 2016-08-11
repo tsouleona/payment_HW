@@ -11,6 +11,7 @@ require_once "../PayMent/models/MysqlConnect.php";
         public function expenseMoney ()
         {
             $amount = $_POST['amount'];
+
             try {
                 $db = new Connect();
                 $db->pdo_connect->beginTransaction();

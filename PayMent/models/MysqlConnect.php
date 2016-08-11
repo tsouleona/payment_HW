@@ -1,5 +1,4 @@
 <?php
-
     class Connect{
         protected $result;
         public $pdo_connect;

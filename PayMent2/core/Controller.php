@@ -1,10 +1,10 @@
 <?php
     class Controller{
-        protected $result;
+        protected $root;
 
         public function __construct () {
             $connect = new Config();
-            $this->result = $connect->root();
+            $this->root = $connect->root();
         }
         public function model ($model) {
             require_once "../PayMent2/models/MysqlConnect.php";

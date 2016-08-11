@@ -1,7 +1,7 @@
 <?php
     class Connect
     {
-        protected $result;
+        public $result;
         public $pdo_connect;
 
         public function __construct ()
@@ -15,15 +15,15 @@
             $this->pdo_connect->exec("SET NAMES utf8");
         }
 
-        public function executeSql ($order, $items)
+        public function executeSql ($sql, $params)
         {
-            $this->result = $this->pdo_connect->prepare($order);
-            $this->result->execute($items);
+            $this->result = $this->pdo_connect->prepare($sql);
+            $this->result->execute($params);
         }
 
-        public function fetchData ($order, $items)
+        public function fetchData ($sql, $params)
         {
-            $this->executeSql($order, $items);
+            $this->executeSql($sql, $params);
             $row = $this->result->fetchAll(PDO::FETCH_ASSOC);
 
             return $row;

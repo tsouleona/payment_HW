@@ -25,7 +25,7 @@
 
         public function updateUser ($id, $balance)
         {
-            $params = [$balance,$id];
+            $params = [$balance, $id];
             $sql = "UPDATE `user` SET `balance` = `balance` + ? WHERE `id` = ?";
             $this->executeSql($sql, $params);
         }

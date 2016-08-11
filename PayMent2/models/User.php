@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set("Asia/Taipei");
+
     class User extends Connect
     {
         public function checkId ($id)
@@ -25,17 +27,21 @@
         public function getBalance ($id)
         {
             $params = [$id];
-            $sql = "SELECT `balance` FROM `user` WHERE `id` = ? FOR UPDATE";
+            $sql = "SELECT `balance` FROM `user` WHERE `id` = ?";
             $row = $this->fetchData($sql, $params);
 
             return $row[0]['balance'];
         }
 
-        public function updateUser ($id, $balance)
+        public function updateUser ($id, $balance, $userGetTime)
         {
-            $params = [$balance,$id];
-            $sql = "UPDATE `user` SET `balance` = `balance` + ? WHERE `id` = ?";
+            $verTime = date("Y-m-d H:i:s");
+            $params = [$balance , $verTime, $id, $userGetTime];
+            $sql = "UPDATE `user` SET `balance` = `balance` + ? , `ver_time` = ? WHERE `id` = ? AND `ver_time` = ?";
             $this->executeSql($sql, $params);
+            if ($this->result->rowCount() == 0) {
+                return false;
+            }
         }
 
     }

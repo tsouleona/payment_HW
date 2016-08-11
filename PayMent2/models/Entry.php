@@ -1,5 +1,5 @@
 <?php
-    date_default_timezone_set("Asia/Taipei");
+date_default_timezone_set("Asia/Taipei");
 
     class Entry extends Connect
     {

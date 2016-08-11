@@ -27,11 +27,12 @@ require_once "../PayMent2/models/MysqlConnect.php";
                 }
 
                 $balance = $balance + $amount;
+                $op = $user->updateUser($_POST['userId'], $amount, $userGetTime, $verTime);
 
-                if ($verTime != $userGetTime) {
+                if ($op) {
                     throw new Exception("抱歉，您的交易失敗，請重新執行(按確認鍵)");
                 }
-                $user->updateUser($_POST['userId'], $amount);
+
                 $entry->insertEntry($_POST, $amount, $action, $balance);
 
                 $db->pdo_connect->commit();

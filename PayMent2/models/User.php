@@ -19,9 +19,9 @@ date_default_timezone_set("Asia/Taipei");
         public function getVerTime ($id)
         {
             $params = [$id];
-            $sql = "SELECT `ver_time` FROM `user` WHERE `id` = ?";
-            $verTime = $this->fetchData($sql, $params);
-            return $verTime;
+            $sql = "SELECT `verstion` FROM `user` WHERE `id` = ?";
+            $row = $this->fetchData($sql, $params);
+            return $row[0]['verstion'];
         }
 
         public function getBalance ($id)
@@ -33,14 +33,15 @@ date_default_timezone_set("Asia/Taipei");
             return $row[0]['balance'];
         }
 
-        public function updateUser ($id, $balance, $userGetTime)
+        public function updateUser ($id, $amount, $userGetTime, $verTime)
         {
-            $verTime = date("Y-m-d H:i:s");
-            $params = [$balance , $verTime, $id, $userGetTime];
-            $sql = "UPDATE `user` SET `balance` = `balance` + ? , `ver_time` = ? WHERE `id` = ? AND `ver_time` = ?";
+            $verTime = $verTime + 1;
+            $params = [$amount , $verTime, $id, $userGetTime];
+            $sql = "UPDATE `user` SET `balance` = `balance` + ? , `verstion` = ? WHERE `id` = ? AND `verstion` = ?";
             $this->executeSql($sql, $params);
+
             if ($this->result->rowCount() == 0) {
-                return false;
+                return true;
             }
         }
 

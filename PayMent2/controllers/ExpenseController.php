@@ -32,9 +32,9 @@ require_once "../PayMent2/models/MysqlConnect.php";
                 }
                 $amount = -$amount;
                 $balance = $balance + $amount;
-                $op = $user->updateUser($_POST['userId'], $amount, $userGetTime);
+                $op = $user->updateUser($_POST['userId'], $amount, $userGetTime, $verTime);
 
-                if (!$op) {
+                if ($op) {
                     throw new Exception("抱歉，您的交易失敗，請重新執行(按確認鍵)");
                 }
                 $entry->insertEntry($_POST, $amount, $action, $balance);

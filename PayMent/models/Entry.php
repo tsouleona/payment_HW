@@ -6,17 +6,17 @@
         public function insertEntry ($list, $amount, $action, $balance)
         {
             $date = date("Y-m-d H:i:s");
-            $items = [$list['userId'], $list['memo'], $amount, $balance, $date];
-            $order = "INSERT INTO `entry`(`user_id`, `memo`, `amount`, `balance`, `date`)
+            $params = [$list['userId'], $list['memo'], $amount, $balance, $date];
+            $sql = "INSERT INTO `entry`(`user_id`, `memo`, `amount`, `balance`, `date`)
             VALUES(?, ?, ?, ?, ?)";
-            $this->executeSql($order,$items);
+            $this->executeSql($sql,$params);
         }
 
         public function selectEntry ($userId)
         {
-            $items = [$userId];
-            $order = "SELECT * FROM `entry` WHERE `user_id` = ?";
-            $row = $this->fetchData($order, $items);
+            $params = [$userId];
+            $sql = "SELECT * FROM `entry` WHERE `user_id` = ?";
+            $row = $this->fetchData($sql, $params);
             $this->pdo_connect = null;
 
             return $row;

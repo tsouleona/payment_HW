@@ -1,5 +1,5 @@
 <?php
-require_once "../PayMent/models/MysqlConnect.php";
+require_once "../PayMent2/models/MysqlConnect.php";
 
     class DepositController extends Controller
     {
@@ -10,13 +10,16 @@ require_once "../PayMent/models/MysqlConnect.php";
 
         public function depositMoney ()
         {
+            $user = $this->model("User");
+            $entry = $this->model("Entry");
             $amount = $_POST['amount'];
+            $verTime = $user->getVerTime($_POST['userId']);
+            $userGetTime = $verTime;
             try {
                 $db = new Connect();
                 $db->pdo_connect->beginTransaction();
 
-                $user = $this->model("User");
-                $entry = $this->model("Entry");
+
                 $balance = $user->getBalance($_POST['userId']);
 
                 if ($amount < 0) {
@@ -24,6 +27,10 @@ require_once "../PayMent/models/MysqlConnect.php";
                 }
 
                 $balance = $balance + $amount;
+
+                if ($verTime != $userGetTime) {
+                    throw new Exception("抱歉，您的交易失敗，請重新執行(按確認鍵)");
+                }
                 $user->updateUser($_POST['userId'], $amount);
                 $entry->insertEntry($_POST, $amount, $action, $balance);
 

@@ -33,7 +33,9 @@
                     <h4 style="color:#FFF"><strong>備註</strong></h4>
                     <input type="text" class="form-control" id="expenseMemo" />
                 </div>
-                <a style="color:#FFF" href="<?php echo $root;?>Index/indexView" ><button id="ok" class="btn btn-primary btn-lg">回首頁</button></a>
+                <a style="color:#FFF" href="<?php echo $root;?>Index/indexView" >
+                    <button id="ok" class="btn btn-primary btn-lg">回首頁</button>
+                </a>
                 <button id="expenseOk" class="btn btn-primary btn-lg">確認</button>
             </div>
         </div>

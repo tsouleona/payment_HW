@@ -3,9 +3,9 @@
     {
         public function checkId ($id)
         {
-            $items = [$id];
-            $order = "SELECT * FROM `user` WHERE `id` = ?";
-            $row = $this->fetchData($order, $items);
+            $params = [$id];
+            $sql = "SELECT * FROM `user` WHERE `id` = ?";
+            $row = $this->fetchData($sql, $params);
             $this->pdo_connect = null;
             if ($row) {
                 return $row;
@@ -16,18 +16,18 @@
 
         public function getBalance ($id)
         {
-            $items = [$id];
-            $order = "SELECT `balance` FROM `user` WHERE `id` = ? FOR UPDATE";
-            $row = $this->fetchData($order, $items);
+            $params = [$id];
+            $sql = "SELECT `balance` FROM `user` WHERE `id` = ? FOR UPDATE";
+            $row = $this->fetchData($sql, $params);
 
             return $row[0]['balance'];
         }
 
         public function updateUser ($id, $balance)
         {
-            $items = [$balance,$id];
-            $order ="UPDATE `user` SET `balance` = `balance` + ? WHERE `id` = ?";
-            $this->executeSql($order, $items);
+            $params = [$balance,$id];
+            $sql = "UPDATE `user` SET `balance` = `balance` + ? WHERE `id` = ?";
+            $this->executeSql($sql, $params);
         }
 
     }

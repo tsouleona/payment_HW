@@ -1,10 +1,10 @@
 <?php
-
-    class Connect{
+    class Connect
+    {
         protected $result;
         public $pdo_connect;
 
-        function __construct ()
+        public function __construct ()
         {
             $db_server = "localhost";
             $db_name = "PayMent";
@@ -15,15 +15,15 @@
             $this->pdo_connect->exec("SET NAMES utf8");
         }
 
-        function executeSql ($order,$items)
+        public function executeSql ($order, $items)
         {
             $this->result = $this->pdo_connect->prepare($order);
             $this->result->execute($items);
         }
 
-        function fetchData ($order,$items)
+        public function fetchData ($order, $items)
         {
-            $this->connectMysql($order,$items);
+            $this->executeSql($order, $items);
             $row = $this->result->fetchAll(PDO::FETCH_ASSOC);
 
             return $row;

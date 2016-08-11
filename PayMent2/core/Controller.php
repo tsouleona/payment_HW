@@ -7,8 +7,8 @@
             $this->result = $connect->root();
         }
         public function model ($model) {
-            require_once "../PayMent/models/MysqlConnect.php";
-            require_once "../PayMent/models/$model.php";
+            require_once "../PayMent2/models/MysqlConnect.php";
+            require_once "../PayMent2/models/$model.php";
 
             return new $model ();
         }

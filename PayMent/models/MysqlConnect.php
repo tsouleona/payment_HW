@@ -15,13 +15,13 @@
             $this->pdo_connect->exec("SET NAMES utf8");
         }
 
-        function connectMysql ($order,$items)
+        function executeSql ($order,$items)
         {
             $this->result = $this->pdo_connect->prepare($order);
             $this->result->execute($items);
         }
 
-        function connectGetdata ($order,$items)
+        function fetchData ($order,$items)
         {
             $this->connectMysql($order,$items);
             $row = $this->result->fetchAll(PDO::FETCH_ASSOC);

@@ -9,14 +9,14 @@
             $items = [$list['userId'], $list['memo'], $amount, $balance, $date];
             $order = "INSERT INTO `entry`(`user_id`, `memo`, `amount`, `balance`, `date`)
             VALUES(?, ?, ?, ?, ?)";
-            $this->connectMysql($order,$items);
+            $this->executeSql($order,$items);
         }
 
         public function selectEntry ($userId)
         {
             $items = [$userId];
             $order = "SELECT * FROM `entry` WHERE `user_id` = ?";
-            $row = $this->connectGetdata($order, $items);
+            $row = $this->fetchData($order, $items);
             $this->pdo_connect = null;
 
             return $row;

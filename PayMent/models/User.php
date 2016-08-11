@@ -5,7 +5,7 @@
         {
             $items = [$id];
             $order = "SELECT * FROM `user` WHERE `id` = ?";
-            $row = $this->connectGetdata($order, $items);
+            $row = $this->fetchData($order, $items);
             $this->pdo_connect = null;
             if ($row) {
                 return $row;
@@ -18,7 +18,7 @@
         {
             $items = [$id];
             $order = "SELECT `balance` FROM `user` WHERE `id` = ? FOR UPDATE";
-            $row = $this->connectGetdata($order, $items);
+            $row = $this->fetchData($order, $items);
 
             return $row[0]['balance'];
         }
@@ -27,7 +27,7 @@
         {
             $items = [$balance,$id];
             $order ="UPDATE `user` SET `balance` = `balance` + ? WHERE `id` = ?";
-            $this->connectMysql($order, $items);
+            $this->executeSql($order, $items);
         }
 
     }

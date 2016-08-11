@@ -23,25 +23,27 @@
             <div class="row" style="width:600;background:#ffaab8;border:2px #ffaab8 solid;border-radius:10px">
                 <div class="form-group">
                 <h3 style="color:#FFF"><strong>請輸入帳號</strong></h3>
-                <input type="text" class="form-control" id="user_id" />
+                <input type="text" class="form-control" id="userId" />
                 </div>
-                <button id="ok" class="btn btn-primary btn-lg">確認</button>
+                <button id="Ok" class="btn btn-primary btn-lg">確認</button>
             </div>
         </div>
     </div>
     <hr>
-    <div id="index_view"></div>
+    <div id="indexView"></div>
     <script>
-    $("#ok").on("click",function ()
+    $("#Ok").on("click",function ()
     {
-        $("#index_view").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
+        $("#indexView").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
         $.ajax({
             url:'<?php echo $root;?>Index/checkId',
             type:'POST',
-            data:{user_id:$("#user_id").val()},
+            data:{
+                userId:$("#userId").val()
+            },
             datatype:'html',
             success:function(data){
-                $("#index_view").html(data);
+                $("#indexView").html(data);
             }
         })
     });

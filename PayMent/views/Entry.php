@@ -18,11 +18,11 @@
 </head>
 <body>
     <?php
-        $user_id = $data[0];
+        $userId = $data[0];
     ?>
-    <input style="visibility:hidden" value="<?php echo $user_id;?>" id="user_id" />
+    <input style="visibility:hidden" value="<?php echo $userId;?>" id="userId" />
     <br><br><br>
-    <div id="alllist"><h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3></div>
+    <div id="allList"><h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3></div>
     <script>
     $(document).ready(function ()
     {
@@ -33,11 +33,11 @@
                 type:'POST',
                 data:
                 {
-                    user_id:$("#user_id").val()
+                    userId:$("#userId").val()
                 },
                 datatype:'html',
                 success:function(data){
-                    $("#alllist").html(data);
+                    $("#allList").html(data);
                 }
             });
         }

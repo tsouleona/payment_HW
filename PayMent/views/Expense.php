@@ -18,48 +18,48 @@
 </head>
 <body>
     <?php
-        $user_id = $data[0];
+        $userId = $data[0];
     ?>
     <br><br><br>
     <div class="row" align="center">
         <div class="container">
             <div class="row" style="width:600;background:#ffaab8;border:2px #ffaab8 solid;border-radius:10px">
                 <div class="form-group">
-                    <input style="visibility:hidden" value="<?php echo $user_id;?>" id="user_id" />
+                    <input style="visibility:hidden" value="<?php echo $userId;?>" id="userId" />
 
                     <h4 style="color:#FFF"><strong>請輸入出款金額</strong></h4>
-                    <input type="text" class="form-control" id="expense_amount" />
+                    <input type="text" class="form-control" id="expenseAmount" />
 
                     <h4 style="color:#FFF"><strong>備註</strong></h4>
-                    <input type="text" class="form-control" id="expense_memo" />
+                    <input type="text" class="form-control" id="expenseMemo" />
                 </div>
                 <a style="color:#FFF" href="<?php echo $root;?>Index/indexView" ><button id="ok" class="btn btn-primary btn-lg">回首頁</button></a>
-                <button id="expenseok" class="btn btn-primary btn-lg">確認</button>
+                <button id="expenseOk" class="btn btn-primary btn-lg">確認</button>
             </div>
         </div>
     </div>
     <hr>
-    <div id="expenseop"></div>
+    <div id="expenseOp"></div>
     <script>
-        $("#expenseok").on("click",function ()
+        $("#expenseOk").on("click",function ()
         {
-            if (!isNaN($("#expense_amount").val()))
+            if (!isNaN($("#expenseAmount").val()))
             {
-                if ($("#expense_amount").val()=="") {
-                    $("#expenseop").html('<h3 style="color:#ff5d79"><strong>尚未輸入完整</strong></h3>');
+                if ($("#expenseAmount").val()=="") {
+                    $("#expenseOp").html('<h3 style="color:#ff5d79"><strong>尚未輸入完整</strong></h3>');
                 } else {
-                    $("#expenseop").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
+                    $("#expenseOp").html('<h3 style="color:#ff5d79"><strong>請稍後將為您服務</strong></h3>');
                     $.ajax({
                         url:'<?php echo $root;?>Expense/expenseMoney',
                         type:'POST',
                         data:{
-                            user_id:$("#user_id").val(),
-                            amount:$("#expense_amount").val(),
-                            memo:$("#expense_memo").val()
+                            userId:$("#userId").val(),
+                            amount:$("#expenseAmount").val(),
+                            memo:$("#expenseMemo").val()
                         },
                         datatype:'html',
                         success:function(data){
-                            $("#expenseop").html(data);
+                            $("#expenseOp").html(data);
                         }
                     });
                 }

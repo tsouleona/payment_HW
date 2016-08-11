@@ -6,15 +6,15 @@
         public function insertEntry ($list, $amount, $action, $balance)
         {
             $date = date("Y-m-d H:i:s");
-            $items = [$list['user_id'], $list['memo'], $amount, $balance, $date];
+            $items = [$list['userId'], $list['memo'], $amount, $balance, $date];
             $order = "INSERT INTO `entry`(`user_id`, `memo`, `amount`, `balance`, `date`)
             VALUES(?, ?, ?, ?, ?)";
             $this->connectMysql($order,$items);
         }
 
-        public function selectEntry ($user_id)
+        public function selectEntry ($userId)
         {
-            $items = [$user_id];
+            $items = [$userId];
             $order = "SELECT * FROM `entry` WHERE `user_id` = ?";
             $row = $this->connectGetdata($order, $items);
             $this->pdo_connect = null;

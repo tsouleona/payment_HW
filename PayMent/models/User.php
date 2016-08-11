@@ -14,7 +14,7 @@
 
         }
 
-        public function selectBalance ($id)
+        public function getBalance ($id)
         {
             $items = [$id];
             $order = "SELECT `balance` FROM `user` WHERE `id` = ? FOR UPDATE";

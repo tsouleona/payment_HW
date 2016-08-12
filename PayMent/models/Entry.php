@@ -3,10 +3,10 @@ date_default_timezone_set("Asia/Taipei");
 
     class Entry extends Connect
     {
-        public function insertEntry ($list, $amount, $action, $balance)
+        public function insertEntry ($userId, $memo, $amount, $action, $balance)
         {
             $date = date("Y-m-d H:i:s");
-            $params = [$list['userId'], $list['memo'], $amount, $balance, $date];
+            $params = [$userId, $memo, $amount, $balance, $date];
             $sql = "INSERT INTO `entry`(`user_id`, `memo`, `amount`, `balance`, `date`)
             VALUES(?, ?, ?, ?, ?)";
             $this->executeSql($sql,$params);

@@ -1,5 +1,4 @@
 <?php
-require_once "../PayMent/models/MysqlConnect.php";
 
     class DepositController extends Controller
     {
@@ -10,32 +9,14 @@ require_once "../PayMent/models/MysqlConnect.php";
 
         public function depositMoney ()
         {
-            $amount = $_POST['amount'];
+            $conflict = $this->model("ConflictProcess");
+            $result = $conflict->findConflict($_POST['amount'], $_POST['userId'], $_POST['memo']);
 
-            try {
-                $db = new Connect();
-                $db->pdo_connect->beginTransaction();
-
-                $user = $this->model("User");
-                $entry = $this->model("Entry");
-                $balance = $user->getBalance($_POST['userId']);
-
-                if ($amount < 0) {
-                    throw new Exception("您的入款金額不能小於0");
-                }
-
-                $balance = $balance + $amount;
-                $user->updateUser($_POST['userId'], $amount);
-                $entry->insertEntry($_POST, $amount, $action, $balance);
-
-                $db->pdo_connect->commit();
-                $db->pdo_connect = null;
-                $this->view("DepositChose", [$_POST['userId'], $balance]);
-            } catch (Exception $err) {
-                $db->pdo_connect->rollBack();
-                $this->error($err->getMessage());
-                $db->pdo_connect = null;
+            if($result[0]) {
+                $this->view("DepositChose", [$result[1], $result[2]]);
+                exit;
             }
+            $this->error($result[1]);
         }
 
         public function error ($error) {

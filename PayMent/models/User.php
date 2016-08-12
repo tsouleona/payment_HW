@@ -23,9 +23,9 @@
             return $row[0]['balance'];
         }
 
-        public function updateUser ($id, $balance)
+        public function updateUser ($id, $amount)
         {
-            $params = [$balance, $id];
+            $params = [$amount, $id];
             $sql = "UPDATE `user` SET `balance` = `balance` + ? WHERE `id` = ? ";
             $this->executeSql($sql, $params);
         }

@@ -1,6 +1,7 @@
 <?php
 namespace myProject;
 use myProject\Connect;
+date_default_timezone_set("Asia/Taipei");
 
     class Model extends Connect
     {
@@ -35,7 +36,7 @@ use myProject\Connect;
             $this->pdo_connect->commit();
             $this->pdo_connect = null;
 
-            return true;
+            return $balance;
         }
 
         public function findDepositconflict ($userId, $amount, $memo)
@@ -63,7 +64,7 @@ use myProject\Connect;
             $this->pdo_connect->commit();
             $this->pdo_connect = null;
 
-            return true;
+            return $balance;
         }
 
         public function checkId ($id)
@@ -74,10 +75,10 @@ use myProject\Connect;
             $this->pdo_connect = null;
             if ($row) {
 
-                return true;
+                return $row[0]['balance'];
             }
 
-            return false;
+            return "查無資料";
         }
 
         public function selectEntry ($userId)
@@ -88,9 +89,9 @@ use myProject\Connect;
             $this->pdo_connect = null;
             if ($row) {
 
-                return true;
+                return $row[0]['date'];
             }
 
-            return false;
+            return "查無資料";
         }
     }

@@ -7,7 +7,7 @@ use myProject\Model;
         public function providerTestExpense ()
         {
             return [
-                ['20160809001', '100', 'test', true],
+                ['20160809001', '0', 'test', 85260],
                 ['20160809001', '100000', 'test', '您的出款金額大於餘額'],
                 ['20160809001', '-55', 'test', '您的出款金額不能小於0']
             ];
@@ -16,7 +16,7 @@ use myProject\Model;
         public function providerTestDeposit ()
         {
             return [
-                ['20160809001', '100', 'test', true],
+                ['20160809001', '0', 'test', 85260],
                 ['20160809001', '-55', 'test', '您的出款金額不能小於0']
             ];
         }
@@ -24,18 +24,18 @@ use myProject\Model;
         public function providerTestId ()
         {
             return [
-                ['20160809001', true],
-                ['20160809002', true],
-                ['123456', false]
+                ['20160809001', 85260],
+                ['20160809002', 83300],
+                ['123456', '查無資料']
             ];
         }
 
         public function providerTestEntry ()
         {
             return [
-                ['20160809001', true],
-                ['20160809002', true],
-                ['123456', false]
+                ['20160809001', '2016-08-12 15:41:01'],
+                ['20160809002', '2016-08-12 15:40:36'],
+                ['123456', '查無資料']
             ];
         }
 

@@ -1,6 +1,4 @@
 <?php
-require_once "../PayMent/models/MysqlConnect.php";
-
     class ExpenseController extends Controller
     {
         public function expenseView ()
@@ -11,35 +9,17 @@ require_once "../PayMent/models/MysqlConnect.php";
         public function expenseMoney ()
         {
             $amount = $_POST['amount'];
+            $userId = $_POST['userId'];
+            $memo = $_POST['memo'];
+            $findConflict = $this->model("ConflictProcess");
+            $result = $findConflict->findExpenseconflict($userId, $amount, $memo);
 
-            try {
-                $db = new Connect();
-                $db->pdo_connect->beginTransaction();
-
-                $user = $this->model("User");
-                $entry = $this->model("Entry");
-                $balance = $user->getBalance($_POST['userId']);
-
-                if ($amount > $balance) {
-                    throw new Exception("您的出款金額大於餘額");
-                }
-
-                if ($amount < 0) {
-                    throw new Exception("您的出款金額不能小於0");
-                }
-                $amount = -$amount;
-                $balance = $balance + $amount;
-                $user->updateUser($_POST['userId'], $amount);
-                $entry->insertEntry($_POST, $amount, $action, $balance);
-
-                $db->pdo_connect->commit();
-                $db->pdo_connect = null;
-                $this->view("ExpenseChose", [$_POST['userId'], $balance]);
-            } catch (Exception $err) {
-                $db->pdo_connect->rollBack();
-                $this->error($err->getMessage());
-                $db->pdo_connect = null;
+            if ($result[0]) {
+                $this->view("ExpenseChose", [$result[1], $result[2]]);
+                exit;
             }
+            $this->error($result[1]);
+
         }
 
         public function error ($error)

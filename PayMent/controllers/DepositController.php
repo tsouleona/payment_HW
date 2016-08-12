@@ -1,5 +1,4 @@
 <?php
-
     class DepositController extends Controller
     {
         public function depositView ()
@@ -9,8 +8,11 @@
 
         public function depositMoney ()
         {
+            $amount = $_POST['amount'];
+            $userId = $_POST['userId'];
+            $memo = $_POST['memo'];
             $conflict = $this->model("ConflictProcess");
-            $result = $conflict->findConflict($_POST['amount'], $_POST['userId'], $_POST['memo']);
+            $result = $conflict->findDepositConflict($userId, $amount, $memo);
 
             if($result[0]) {
                 $this->view("DepositChose", [$result[1], $result[2]]);

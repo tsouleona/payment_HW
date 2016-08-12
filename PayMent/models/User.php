@@ -13,21 +13,4 @@
             return false;
 
         }
-
-        public function getBalance ($id)
-        {
-            $params = [$id];
-            $sql = "SELECT `balance` FROM `user` WHERE `id` = ? FOR UPDATE";
-            $row = $this->fetchData($sql, $params);
-
-            return $row[0]['balance'];
-        }
-
-        public function updateUser ($id, $amount)
-        {
-            $params = [$amount, $id];
-            $sql = "UPDATE `user` SET `balance` = `balance` + ? WHERE `id` = ? ";
-            $this->executeSql($sql, $params);
-        }
-
     }

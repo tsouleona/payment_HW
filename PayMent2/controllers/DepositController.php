@@ -1,6 +1,4 @@
 <?php
-require_once "../PayMent2/models/MysqlConnect.php";
-
     class DepositController extends Controller
     {
         public function depositView ()
@@ -10,39 +8,19 @@ require_once "../PayMent2/models/MysqlConnect.php";
 
         public function depositMoney ()
         {
-            $user = $this->model("User");
-            $entry = $this->model("Entry");
+            $userId = $_POST['userId'];
             $amount = $_POST['amount'];
+            $memo = $_POST['memo'];
+            $user = $this->model("User");
             $verTime = $user->getVerTime($_POST['userId']);
             $userGetTime = $verTime;
-            try {
-                $db = new Connect();
-                $db->pdo_connect->beginTransaction();
-
-
-                $balance = $user->getBalance($_POST['userId']);
-
-                if ($amount < 0) {
-                    throw new Exception("您的入款金額不能小於0");
-                }
-
-                $balance = $balance + $amount;
-                $op = $user->updateUser($_POST['userId'], $amount, $userGetTime, $verTime);
-
-                if ($op) {
-                    throw new Exception("抱歉，您的交易失敗，請重新執行(按確認鍵)");
-                }
-
-                $entry->insertEntry($_POST, $amount, $action, $balance);
-
-                $db->pdo_connect->commit();
-                $db->pdo_connect = null;
-                $this->view("DepositChose", [$_POST['userId'], $balance]);
-            } catch (Exception $err) {
-                $db->pdo_connect->rollBack();
-                $this->error($err->getMessage());
-                $db->pdo_connect = null;
+            $conflict = $this->model("ConflictProcess");
+            $result = $conflict->findDepositConflict($userId, $amount, $memo, $verTime, $userGetTime);
+            if($result[0]) {
+                $this->view("DepositChose", [$result[1], $result[2]]);
+                exit;
             }
+            $this->error($result[1]);
         }
 
         public function error ($error) {

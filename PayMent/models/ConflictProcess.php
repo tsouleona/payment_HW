@@ -69,11 +69,11 @@ date_default_timezone_set("Asia/Taipei");
 
                 $this->pdo_connect->commit();
                 $this->pdo_connect = null;
+
                 return [true, $userId, $balance];
-
-
             } catch (Exception $err) {
                 $this->pdo_connect->rollBack();
+
                 return $err->getMessage();
                 $this->pdo_connect = null;
             }

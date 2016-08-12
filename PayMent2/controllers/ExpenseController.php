@@ -1,6 +1,4 @@
 <?php
-require_once "../PayMent2/models/MysqlConnect.php";
-
     class ExpenseController extends Controller
     {
         public function expenseView ()
@@ -18,10 +16,12 @@ require_once "../PayMent2/models/MysqlConnect.php";
             $userGetTime = $verTime;
             $conflict = $this->model("ConflictProcess");
             $result = $conflict->findExpenseconflict($userId, $amount, $memo, $verTime, $userGetTime);
+
             if($result[0]) {
                 $this->view("ExpenseChose", [$result[1], $result[2]]);
                 exit;
             }
+
             $this->error($result[1]);
         }
 

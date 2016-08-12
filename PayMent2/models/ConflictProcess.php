@@ -5,11 +5,10 @@ date_default_timezone_set("Asia/Taipei");
         public function findExpenseconflict ($userId, $amount, $memo, $verTime, $userGetTime)
         {
             try {
-                $this->pdo_connect->beginTransaction();
-                $sql = "SELECT `balance` FROM `user` WHERE `id` = ? FOR UPDATE";
+
+                $sql = "SELECT `balance` FROM `user` WHERE `id` = ?";
                 $params = [$userId];
                 $row = $this->fetchData($sql, $params);
-                sleep(5);
                 $balance = $row[0]['balance'];
 
                 if ($amount > $balance) {
@@ -19,13 +18,15 @@ date_default_timezone_set("Asia/Taipei");
                 if ($amount < 0) {
                     throw new Exception("您的出款金額不能小於0");
                 }
+
                 $amount = -$amount;
                 $balance = $balance + $amount;
                 $sql = "UPDATE `user` SET `balance` = `balance` + ? , `verstion` = ? WHERE `id` = ? AND `verstion` = ?";
+                $verTime = $verTime + 1;
                 $params = [$amount , $verTime, $userId, $userGetTime];
                 $this->executeSql($sql, $params);
 
-                if ($this->result->rowCount() == 0) {
+                if ($this->result->rowCount() != 1) {
                     throw new Exception("抱歉，您的交易失敗，請重新執行(按確認鍵)");
                 }
 
@@ -34,14 +35,12 @@ date_default_timezone_set("Asia/Taipei");
                 $params = [$userId, $memo, $amount, $balance, $date];
                 $this->executeSql($sql, $params);
 
-                $this->pdo_connect->commit();
                 $this->pdo_connect = null;
 
                 return [true, $userId, $balance];
             } catch (Exception $err) {
-                $this->pdo_connect->rollBack();
 
-                return $err->getMessage();
+                return [false,$err->getMessage()];
                 $this->pdo_connect = null;
             }
         }
@@ -49,8 +48,7 @@ date_default_timezone_set("Asia/Taipei");
         public function findDepositconflict ($userId, $amount, $memo, $verTime, $userGetTime)
         {
             try {
-                $this->pdo_connect->beginTransaction();
-                $sql = "SELECT `balance` FROM `user` WHERE `id` = ? FOR UPDATE";
+                $sql = "SELECT `balance` FROM `user` WHERE `id` = ? ";
                 $params = [$userId];
                 $row = $this->fetchData($sql, $params);
                 $balance = $row[0]['balance'];
@@ -61,10 +59,11 @@ date_default_timezone_set("Asia/Taipei");
 
                 $balance = $balance + $amount;
                 $sql = "UPDATE `user` SET `balance` = `balance` + ? , `verstion` = ? WHERE `id` = ? AND `verstion` = ?";
+                $verTime = $verTime + 1;
                 $params = [$amount , $verTime, $userId, $userGetTime];
                 $this->executeSql($sql, $params);
 
-                if ($this->result->rowCount() == 0) {
+                if ($this->result->rowCount() != 1) {
                     throw new Exception("抱歉，您的交易失敗，請重新執行(按確認鍵)");
                 }
 
@@ -73,14 +72,12 @@ date_default_timezone_set("Asia/Taipei");
                 $params = [$userId, $memo, $amount, $balance, $date];
                 $this->executeSql($sql, $params);
 
-                $this->pdo_connect->commit();
                 $this->pdo_connect = null;
 
                 return [true, $userId, $balance];
             } catch (Exception $err) {
-                $this->pdo_connect->rollBack();
 
-                return $err->getMessage();
+                return [false,$err->getMessage()];
                 $this->pdo_connect = null;
             }
         }

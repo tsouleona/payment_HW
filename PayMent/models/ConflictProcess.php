@@ -10,7 +10,6 @@ date_default_timezone_set("Asia/Taipei");
                 $sql = "SELECT `balance` FROM `user` WHERE `id` = ? FOR UPDATE";
                 $params = [$userId];
                 $row = $this->fetchData($sql, $params);
-                sleep(5);
                 $balance = $row[0]['balance'];
 
                 if ($amount > $balance) {
